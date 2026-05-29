@@ -1,18 +1,13 @@
 # TaskFlow — Task Manager App
 
-> A full-stack task management application built for the INDPRO Internship Assignment.
+> A full-stack task management application built for a Assignment.
 
 ![TaskFlow](https://img.shields.io/badge/Status-Complete-10b981?style=for-the-badge)
 ![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)
 ![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb)
 
----
 
-## Live Demo
-
-- **Frontend**: [https://taskflow-app.vercel.app](https://taskflow-app.vercel.app) *(deploy to update)*
-- **Backend**: [https://taskflow-api.railway.app](https://taskflow-api.railway.app) *(deploy to update)*
 
 ---
 
@@ -43,71 +38,6 @@
 
 ---
 
-## Getting Started
-
-### Prerequisites
-- Node.js 18+
-- MongoDB Atlas account (free tier)
-
-### 1. Clone and install
-
-```bash
-git clone https://github.com/yourusername/taskflow.git
-cd taskflow
-
-# Install backend
-cd server && npm install
-
-# Install frontend
-cd ../client && npm install
-```
-
-### 2. Backend setup
-
-Create `server/.env`:
-
-```env
-PORT=5000
-MONGODB_URI=mongodb+srv://<user>:<pass>@cluster0.xxxxx.mongodb.net/taskmanager
-JWT_SECRET=your_secret_key_here
-JWT_EXPIRES_IN=7d
-CLIENT_URL=http://localhost:5173
-```
-
-### 3. Frontend setup
-
-`client/.env` is already configured for local development:
-
-```env
-VITE_API_URL=http://localhost:5000/api
-```
-
-### 4. Run locally
-
-```bash
-# Terminal 1 — Backend
-cd server && npm start
-
-# Terminal 2 — Frontend
-cd client && npm run dev
-```
-
-Visit `http://localhost:5173`
-
----
-
-## API Endpoints
-
-| Method | Route | Auth | Description |
-|---|---|---|---|
-| POST | `/api/auth/register` | No | Create account |
-| POST | `/api/auth/login` | No | Sign in, returns JWT |
-| GET | `/api/tasks` | Yes | Get all user tasks |
-| POST | `/api/tasks` | Yes | Create task |
-| PATCH | `/api/tasks/:id` | Yes | Update task |
-| DELETE | `/api/tasks/:id` | Yes | Delete task |
-
----
 
 ## Project Structure
 
@@ -168,27 +98,3 @@ taskflow/
 
 ---
 
-## Deployment Guide
-
-### Frontend (Vercel)
-```bash
-cd client
-# Set environment variable in Vercel dashboard:
-# VITE_API_URL = https://your-backend.railway.app/api
-vercel --prod
-```
-
-### Backend (Railway)
-```bash
-cd server
-# Add environment variables in Railway dashboard:
-# MONGODB_URI, JWT_SECRET, CLIENT_URL, PORT
-# Railway auto-detects Node.js and runs npm start
-railway up
-```
-
----
-
-## AI Tools Disclosure
-
-This project was developed with AI assistance (Gemini). Per the assignment rules, the backend is therefore **mandatory** and has been fully implemented with database integration and JWT authentication.
