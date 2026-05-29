@@ -48,7 +48,6 @@ export default function Navbar() {
           </button>
         </div>
       </div>
-
       <style>{`
         .navbar {
           background: rgba(10, 10, 15, 0.85);
