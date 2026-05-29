@@ -8,13 +8,30 @@ const PRIORITY_COLORS = {
   high: { bg: 'var(--danger-light)', color: 'var(--danger)', label: 'High' },
 };
 
-function formatDate(dateStr) {
+function formatDate(dateStr, stage) {
   if (!dateStr) return null;
-  const d = new Date(dateStr);
-  const now = new Date();
-  const diff = d - now;
-  const overdue = diff < 0;
+  if (stage === 'done') {
+    const d = new Date(dateStr);
+    const label = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    return { label, overdue: false };
+  }
+
+  let d;
+  if (typeof dateStr === 'string' && dateStr.includes('-') && !dateStr.includes('T')) {
+    const parts = dateStr.split('-');
+    d = new Date(parts[0], parts[1] - 1, parts[2]);
+  } else {
+    d = new Date(dateStr);
+  }
+
   const label = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+  // Set both to midnight local time to compare calendar days robustly
+  const dueDateLocal = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const todayLocal = new Date();
+  todayLocal.setHours(0, 0, 0, 0);
+
+  const overdue = dueDateLocal < todayLocal;
   return { label, overdue };
 }
 
@@ -35,7 +52,7 @@ export default function TaskCard({ task, onEdit, onDelete }) {
   };
 
   const priority = PRIORITY_COLORS[task.priority] || PRIORITY_COLORS.medium;
-  const date = formatDate(task.dueDate);
+  const date = formatDate(task.dueDate, task.stage);
 
   return (
     <div
